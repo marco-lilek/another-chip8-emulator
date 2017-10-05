@@ -12,9 +12,9 @@ import traceback
 import random
 random.seed()
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
-LOOP60HZ = 5
+LOOP60HZ = 3
 if __name__ == '__main__':
   keyboard = Keyboard()
   screen = Screen()
@@ -22,6 +22,8 @@ if __name__ == '__main__':
   cpu = CPU(keyboard, screen)
   cpu.load(sys.argv[1])
   
+  LOOP60HZ = sys.argv[2] if len(sys.argv) >= 3 else LOOP60HZ
+
   try:
     while True:
       for i in xrange(LOOP60HZ):
