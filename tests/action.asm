@@ -1,0 +1,38 @@
+LD V0,#5
+LD ST, V0
+LD DT,V0
+LD V0,DT
+
+ADD I,V0
+
+CALL FUNC
+
+LD V0,#f
+JP END
+FUNC:
+  LD V0,#6
+  RET
+
+END:
+SNE V0,#f
+LD V0, #a
+LD V1, #a
+SNE V0,V1
+LD V2,#f
+
+LD V0,#2
+JP V0, SPOT
+
+SPOT:
+LD V5,#f
+LD V5,#1
+
+
+ENDEND:
+
+SKNP V0
+LD V6,#2
+LD V6,#5
+LD Ve, K
+
+

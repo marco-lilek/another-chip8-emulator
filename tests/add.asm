@@ -1,0 +1,37 @@
+CLS
+LD V0,#1
+LD V1,#2
+OR V0, V1
+
+ADD V2,#3
+ADD V3,#1
+AND V3,V2
+
+LD V4,#2
+LD V5,#3
+XOR V5,V4
+
+LD V6,#ff
+LD V7,#2
+ADD V7, V6
+
+LD V8,#1
+LD V9,#2
+SUB V8, V9
+
+LD Va,#2
+LD Vb,#1
+SUBN Va,Vb
+
+LD Vf,0
+LD Vc,#2
+SHR Vc
+
+LD Vf,0
+LD Vc,#2
+
+TEST:
+LD I,TEST
+
+RND Vd,#ff
+

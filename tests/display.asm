@@ -1,0 +1,11 @@
+LD V0,#5
+LD V1,#5
+LD V2,#a
+
+LD F, V2
+DRW V0, V1,#5
+
+
+LOOP:
+JP LOOP
+

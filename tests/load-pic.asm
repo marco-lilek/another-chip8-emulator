@@ -1,0 +1,21 @@
+LD V0,#0
+LD F, V0
+
+LD V0,#0
+LD B, V0
+
+LD V0,#1
+LD V1,#2
+LD V2,#3
+
+LD [I],V1
+
+LD V0,#0
+LD V1,#0
+LD V2,#0
+
+LD V3,#2
+LD V3, [I]
+
+
+
