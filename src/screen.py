@@ -32,9 +32,10 @@ class Screen:
     numBits = 8
     collision = 0
     while numBits > 0:
+      logger.debug('drawing to {} {}'.format(x, y))
       newVal = xor((byte >> (numBits - 1)) & 0x1, self.grid[x][y])
 
-      collision = self.grid[x][y] and not newVal
+      collision = (self.grid[x][y] and not newVal) or collision
       self.grid[x][y] = newVal
       x += 1
       if x == Screen.CANVAS_W:
@@ -53,12 +54,14 @@ class Screen:
 
 
   def writeSprite(self, sprite, x, y):
+    xm = x % Screen.CANVAS_W
+    ym = y % Screen.CANVAS_H
     collision = 0
     for b in xrange(len(sprite)):
-      collision = self.writeByte(sprite[b], x, y) or collision
-      y += 1
-      if y == Screen.CANVAS_H:
-        y = 0
+      collision = self.writeByte(sprite[b], xm, ym) or collision
+      ym += 1
+      if ym == Screen.CANVAS_H:
+        ym = 0
 
     return int(collision)
 
@@ -70,7 +73,7 @@ class Screen:
 
 if __name__ == '__main__':
     screen = Screen()
-    print screen.writeByte(0xff, 63, 0)
-    print screen.writeByte(0xff, 0, 5)
+    print screen.writeByte(0xff, 0, 0)
+    print screen.writeByte(0xc0, 0, 0)
     screen.dumpBytes()
     screen.redraw()

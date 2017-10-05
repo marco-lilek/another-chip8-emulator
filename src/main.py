@@ -7,10 +7,12 @@ import logging
 import sys
 from time import sleep
 
+import traceback
+
 import random
 random.seed()
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 LOOP60HZ = 5
 if __name__ == '__main__':
@@ -25,7 +27,7 @@ if __name__ == '__main__':
       for i in xrange(LOOP60HZ):
         cpu.runCycle()
 
-      sleep(0.01)
+      sleep(0.001)
       cpu.DT -= 1
       cpu.ST -= 1
 
@@ -35,8 +37,12 @@ if __name__ == '__main__':
         cpu.ST = 0
   except OutOfMemException:
     pass
+  except IndexError:
+    traceback.print_exc()
+    cpu.dumpReg()
+
 
   #cpu.dumpMem()
-  cpu.dumpReg()
-  keyboard.dumpKeystate()
+  #cpu.dumpReg()
+  #keyboard.dumpKeystate()
   #screen.dumpBytes()

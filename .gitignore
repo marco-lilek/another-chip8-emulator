@@ -1,3 +1,4 @@
 chip8-compiler/
 Chip8-Disassembler/
 yaca
+*.pyc

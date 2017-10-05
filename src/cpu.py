@@ -153,7 +153,7 @@ class CPU:
     elif op == 0x86:
       log.debug('SHR Vx {,Vy}')
       self.V[0xf] = int(self.V[x] & 0x1 == 0x1)
-      self.V[x] = self.V[x] >> 1
+      self.V[x] = (self.V[x] >> 1) & 0xff
     elif op == 0x87:
       log.debug('SUBN Vx, Vy')
       self.V[0xf] = int(self.V[y] > self.V[x])
@@ -162,9 +162,8 @@ class CPU:
       if not self.V[0xf]:
         self.V[y] += 0x100
     elif op == 0x8e:
-      assert False
       log.debug('SHL Vx {,Vy}')
-      self.V[0xf] = int(self.V[x] & 0x80 == 0x1) 
+      self.V[0xf] = int(self.V[x] & 0x80 > 0) 
       self.V[x] = self.V[x] << 1
     elif op == 0x90:
       log.debug('SNE Vx, Vy')
